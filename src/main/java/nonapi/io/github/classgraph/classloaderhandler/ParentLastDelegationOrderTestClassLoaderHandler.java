@@ -35,7 +35,7 @@ import nonapi.io.github.classgraph.scanspec.ScanSpec;
 import nonapi.io.github.classgraph.utils.LogNode;
 
 /** ClassLoaderHandler that is used to test PARENT_LAST delegation order. */
-class ParentLastDelegationOrderTestClassLoaderHandler implements ClassLoaderHandler {
+final class ParentLastDelegationOrderTestClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private ParentLastDelegationOrderTestClassLoaderHandler() {
     }

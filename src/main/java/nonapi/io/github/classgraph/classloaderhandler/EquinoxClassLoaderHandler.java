@@ -41,7 +41,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
 /**
  * Extract classpath entries from the Eclipse Equinox ClassLoader.
  */
-class EquinoxClassLoaderHandler implements ClassLoaderHandler {
+final class EquinoxClassLoaderHandler implements ClassLoaderHandler {
     /**
      * True if system bundles have been read. We assume there is only one system bundle on the classpath, so this is
      * static.
@@ -116,13 +116,13 @@ class EquinoxClassLoaderHandler implements ClassLoaderHandler {
                         // We found the base file and a classpath element, e.g. "bin/"
                         Object base = baseFile;
                         String sep = "/";
-                        if (bundlefile.getClass().getName()
-                                .equals("org.eclipse.osgi.storage.bundlefile.NestedDirBundleFile")) {
+                        if ("org.eclipse.osgi.storage.bundlefile.NestedDirBundleFile"
+                                .equals(bundlefile.getClass().getName())) {
                             // Handle nested ZipBundleFile with "!/" separator
                             final Object baseBundleFile = ReflectionUtils.getFieldVal(false, bundlefile,
                                     "baseBundleFile");
-                            if (baseBundleFile != null && baseBundleFile.getClass().getName()
-                                    .equals("org.eclipse.osgi.storage.bundlefile.ZipBundleFile")) {
+                            if (baseBundleFile != null && "org.eclipse.osgi.storage.bundlefile.ZipBundleFile"
+                                    .equals(baseBundleFile.getClass().getName())) {
                                 base = baseBundleFile;
                                 sep = "!/";
                             }

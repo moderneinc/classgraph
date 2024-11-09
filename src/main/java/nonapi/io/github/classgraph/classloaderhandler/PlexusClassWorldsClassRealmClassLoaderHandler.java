@@ -41,7 +41,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  * 
  * @author lukehutch
  */
-class PlexusClassWorldsClassRealmClassLoaderHandler implements ClassLoaderHandler {
+final class PlexusClassWorldsClassRealmClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private PlexusClassWorldsClassRealmClassLoaderHandler() {
     }
@@ -70,8 +70,8 @@ class PlexusClassWorldsClassRealmClassLoaderHandler implements ClassLoaderHandle
         final Object strategy = ReflectionUtils.getFieldVal(false, classRealmInstance, "strategy");
         if (strategy != null) {
             final String strategyClassName = strategy.getClass().getName();
-            if (strategyClassName.equals("org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy")
-                    || strategyClassName.equals("org.codehaus.plexus.classworlds.strategy.OsgiBundleStrategy")) {
+            if ("org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy".equals(strategyClassName)
+                    || "org.codehaus.plexus.classworlds.strategy.OsgiBundleStrategy".equals(strategyClassName)) {
                 // Strategy is self-first
                 return false;
             }

@@ -85,8 +85,8 @@ class ClassFields {
             new Comparator<Field>() {
                 @Override
                 public int compare(final Field a, final Field b) {
-                    return a.getName().equals("format") ? -1
-                            : b.getName().equals("format") ? 1 : a.getName().compareTo(b.getName());
+                    return "format".equals(a.getName()) ? -1
+                            : "format".equals(b.getName()) ? 1 : a.getName().compareTo(b.getName());
                 }
             };
 

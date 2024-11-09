@@ -35,7 +35,7 @@ import nonapi.io.github.classgraph.scanspec.ScanSpec;
 import nonapi.io.github.classgraph.utils.LogNode;
 
 /** Extract classpath entries from the Weblogic ClassLoaders. */
-class WeblogicClassLoaderHandler implements ClassLoaderHandler {
+final class WeblogicClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private WeblogicClassLoaderHandler() {
     }

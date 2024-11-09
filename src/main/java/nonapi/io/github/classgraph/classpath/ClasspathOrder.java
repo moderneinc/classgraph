@@ -414,7 +414,7 @@ public class ClasspathOrder {
                     if (baseDirFiles != null) {
                         for (final File fileInDir : baseDirFiles) {
                             final String name = fileInDir.getName();
-                            if (!name.equals(".") && !name.equals("..")) {
+                            if (!".".equals(name) && !"..".equals(name)) {
                                 // Add each directory entry as a classpath element
                                 final String fileInDirPath = fileInDir.getPath();
                                 final String fileInDirPathResolved = FastPathResolver

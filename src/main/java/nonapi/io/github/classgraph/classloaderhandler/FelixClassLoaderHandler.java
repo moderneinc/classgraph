@@ -47,7 +47,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  *
  * @author elrufaie
  */
-class FelixClassLoaderHandler implements ClassLoaderHandler {
+final class FelixClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private FelixClassLoaderHandler() {
     }

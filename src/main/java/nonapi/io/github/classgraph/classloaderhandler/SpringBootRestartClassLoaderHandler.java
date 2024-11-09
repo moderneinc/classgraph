@@ -40,7 +40,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  * last loading for specified URLs (those are all that are supposed to be changed during development). Therefor the
  * handler for that class loader also has to delegate in <code>PARENT_LAST</code> order.
  */
-class SpringBootRestartClassLoaderHandler implements ClassLoaderHandler {
+final class SpringBootRestartClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private SpringBootRestartClassLoaderHandler() {
     }

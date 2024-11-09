@@ -524,7 +524,7 @@ public class NestedJarHandler {
         }
 
         final String scheme = url.getProtocol();
-        if (!scheme.equalsIgnoreCase("http") && !scheme.equalsIgnoreCase("https")) {
+        if (!"http".equalsIgnoreCase(scheme) && !"https".equalsIgnoreCase(scheme)) {
             // Check if this URL is backed by a filesystem -- if it is, don't download a copy of the file
             // over the URL; instead, access the filesystem directly 
             try {
@@ -567,7 +567,7 @@ public class NestedJarHandler {
                     throw new IOException("Got response code " + httpConn.getResponseCode() + " for URL " + url);
                 }
             }
-        } else if (conn.getURL().getProtocol().equalsIgnoreCase("file")) {
+        } else if ("file".equalsIgnoreCase(conn.getURL().getProtocol())) {
             // We ended up with a "file:" URL, which can happen as a result of a custom URL scheme that
             // rewrites its URLs into "file:" URLs (see Issue400.java).
             try {

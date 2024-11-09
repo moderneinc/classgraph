@@ -205,8 +205,8 @@ abstract class ClasspathElement {
             // and they don't result in a ClassInfo object, so there will be no duplicate ClassInfo objects
             // created, even if they are encountered multiple times. Instead, any annotations on modules or
             // packages are merged into the appropriate ModuleInfo / PackageInfo object.
-            if (!pathRelativeToPackageRoot.equals("module-info.class")
-                    && !pathRelativeToPackageRoot.equals("package-info.class")
+            if (!"module-info.class".equals(pathRelativeToPackageRoot)
+                    && !"package-info.class".equals(pathRelativeToPackageRoot)
                     && !pathRelativeToPackageRoot.endsWith("/package-info.class")
                     // Check if pathRelativeToPackageRoot has been seen before
                     && !classpathRelativePathsFound.add(pathRelativeToPackageRoot)) {

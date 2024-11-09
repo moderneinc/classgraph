@@ -40,7 +40,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  * A placeloader ClassLoaderHandler that matches Java 9+ classloaders, but does not attempt to extract URLs from
  * them (module scanning uses a different mechanism from classpath scanning).
  */
-class JPMSClassLoaderHandler implements ClassLoaderHandler {
+final class JPMSClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private JPMSClassLoaderHandler() {
     }

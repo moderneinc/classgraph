@@ -210,7 +210,7 @@ class PhysicalZipFile {
     @Override
     public int hashCode() {
         if (hashCode == 0) {
-            hashCode = (file == null ? 0 : file.hashCode());
+            hashCode = file == null ? 0 : file.hashCode();
             if (hashCode == 0) {
                 hashCode = 1;
             }

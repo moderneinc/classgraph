@@ -97,7 +97,7 @@ public class ClasspathFinderTest {
         final ScanSpec scanSpec = new ScanSpec();
         scanSpec.enableSystemJarsAndModules = true;
         scanSpec.ignoreParentClassLoaders = true;
-        scanSpec.overrideClasspath = Collections.<Object> singletonList(classesDir);
+        scanSpec.overrideClasspath = Collections. singletonList(classesDir);
 
         // Act
         final ClasspathFinder classpathFinder = new ClasspathFinder(scanSpec, new LogNode());
@@ -105,7 +105,7 @@ public class ClasspathFinderTest {
 
         // Assert
         assertNotNull(moduleFinder, "ModuleFinder should be non-null");
-        assertTrue(moduleFinder.getSystemModuleRefs().size() > 0, "ModuleFinder should have found system modules");
+        assertTrue(!moduleFinder.getSystemModuleRefs().isEmpty(), "ModuleFinder should have found system modules");
 
         final Set<Path> paths = new TreeSet<>();
         for (final String path : classpathFinder.getClasspathOrder().getClasspathEntryUniqueResolvedPaths()) {
@@ -137,7 +137,7 @@ public class ClasspathFinderTest {
 
         // Assert
         assertNotNull(moduleFinder, "ModuleFinder should be non-null");
-        assertTrue(moduleFinder.getSystemModuleRefs().size() > 0, "ModuleFinder should have found system modules");
+        assertTrue(!moduleFinder.getSystemModuleRefs().isEmpty(), "ModuleFinder should have found system modules");
 
         final Set<Path> paths = new TreeSet<>();
         for (final String path : classpathFinder.getClasspathOrder().getClasspathEntryUniqueResolvedPaths()) {

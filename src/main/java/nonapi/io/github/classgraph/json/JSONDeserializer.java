@@ -46,7 +46,7 @@ import nonapi.io.github.classgraph.types.ParseException;
  * Fast, lightweight Java object to JSON serializer, and JSON to Java object deserializer. Handles cycles in the
  * object graph by inserting reference ids.
  */
-public class JSONDeserializer {
+public final class JSONDeserializer {
     /**
      * Constructor.
      */
@@ -508,8 +508,8 @@ public class JSONDeserializer {
                                 ? itemJsonValueJsonObject.items.size()
                                 : itemJsonValueJsonArray != null ? itemJsonValueJsonArray.items.size()
                                         : /* can't happen */ 0;
-                        if ((resolvedItemValueType instanceof Class<?>
-                                && ((Class<?>) resolvedItemValueType).isArray())) {
+                        if (resolvedItemValueType instanceof Class<?>
+                                && ((Class<?>) resolvedItemValueType).isArray()) {
                             // Instantiate inner array with same number of items as the inner JSONArray
                             if (!itemJsonValueIsJsonArray) {
                                 throw new IllegalArgumentException(
@@ -746,7 +746,7 @@ public class JSONDeserializer {
         // (no need to call getInitialIdToObjectMap(), since toplevel object is a wrapper, which doesn't have an id)
         final List<Runnable> collectionElementAdders = new ArrayList<>();
         populateObjectFromJsonObject(containingObject, containingObject.getClass(), wrapperJsonObj, classFieldCache,
-                new HashMap<CharSequence, Object>(), collectionElementAdders);
+                new HashMap<>(), collectionElementAdders);
         for (final Runnable runnable : collectionElementAdders) {
             runnable.run();
         }

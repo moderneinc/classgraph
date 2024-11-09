@@ -99,10 +99,10 @@ public final class TypeArgument extends HierarchicalTypeSignature {
 
     @Override
     protected void addTypeAnnotation(final List<TypePathNode> typePath, final AnnotationInfo annotationInfo) {
-        if (typePath.size() == 0 && wildcard != Wildcard.NONE) {
+        if (typePath.isEmpty() && wildcard != Wildcard.NONE) {
             // Annotation before wildcard
             addTypeAnnotation(annotationInfo);
-        } else if (typePath.size() > 0 && typePath.get(0).typePathKind == 2) {
+        } else if (!typePath.isEmpty() && typePath.get(0).typePathKind == 2) {
             // Annotation is on the bound of a wildcard type argument of a parameterized type
             typeSignature.addTypeAnnotation(typePath.subList(1, typePath.size()), annotationInfo);
         } else {
@@ -270,7 +270,7 @@ public final class TypeArgument extends HierarchicalTypeSignature {
             break;
         case EXTENDS:
             final String typeSigStr = typeSignature.toString(useSimpleNames);
-            buf.append(typeSigStr.equals("java.lang.Object") ? "?" : "? extends " + typeSigStr);
+            buf.append("java.lang.Object".equals(typeSigStr) ? "?" : "? extends " + typeSigStr);
             break;
         case SUPER:
             buf.append("? super ");

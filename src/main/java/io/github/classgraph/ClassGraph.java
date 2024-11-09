@@ -102,7 +102,7 @@ public class ClassGraph {
          * Use the <a href="https://github.com/toolfactory/jvm-driver">JVM-Driver</a> library to try to gain access
          * to private classloader fields or methods in order to determine the classpath.
          */
-        JVM_DRIVER;
+        JVM_DRIVER
     }
 
     /**

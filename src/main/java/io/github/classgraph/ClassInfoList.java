@@ -62,7 +62,7 @@ public class ClassInfoList extends MappableInfoList<ClassInfo> {
     // Serializable, so all fields must be serializable (and Set is an interface, so is not Serializable).
     // Marking this transient will mean direct relationships will be lost on serialization, but the
     // Serializable interface is not widely used today anyway.
-    private transient final Set<ClassInfo> directlyRelatedClasses;
+    private final transient Set<ClassInfo> directlyRelatedClasses;
 
     /** Whether to sort by name. */
     private final boolean sortByName;
@@ -213,7 +213,7 @@ public class ClassInfoList extends MappableInfoList<ClassInfo> {
                     classRefs.add(classRef);
                 }
             }
-            return classRefs.isEmpty() ? Collections.<Class<T>> emptyList() : classRefs;
+            return classRefs.isEmpty() ? Collections. emptyList() : classRefs;
         }
     }
 
@@ -265,7 +265,7 @@ public class ClassInfoList extends MappableInfoList<ClassInfo> {
                     classRefs.add(classRef);
                 }
             }
-            return classRefs.isEmpty() ? Collections.<Class<?>> emptyList() : classRefs;
+            return classRefs.isEmpty() ? Collections. emptyList() : classRefs;
         }
     }
 

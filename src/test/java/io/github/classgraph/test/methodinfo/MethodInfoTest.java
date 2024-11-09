@@ -124,8 +124,8 @@ public class MethodInfoTest {
                         @Override
                         public boolean accept(final MethodInfo methodInfo) {
                             // JDK 10 fix
-                            return !methodInfo.getName().equals("$closeResource")
-                                    && !methodInfo.getName().equals("lambda$0") && !methodInfo.isSynthetic();
+                            return !"$closeResource".equals(methodInfo.getName())
+                                    && !"lambda$0".equals(methodInfo.getName()) && !methodInfo.isSynthetic();
                         }
                     }).getAsStrings()).containsOnly( //
                             "@" + ExternalAnnotation.class.getName() //
@@ -166,8 +166,8 @@ public class MethodInfoTest {
                         @Override
                         public boolean accept(final MethodInfo methodInfo) {
                             // JDK 10 fix
-                            return !methodInfo.getName().equals("$closeResource")
-                                    && !methodInfo.getName().equals("lambda$0") && !methodInfo.isSynthetic();
+                            return !"$closeResource".equals(methodInfo.getName())
+                                    && !"lambda$0".equals(methodInfo.getName()) && !methodInfo.isSynthetic();
                         }
                     }).getAsStrings()).containsOnly( //
                             "@" + ExternalAnnotation.class.getName() //
@@ -195,9 +195,7 @@ public class MethodInfoTest {
             final MethodInfo mi = scanResult.getClassInfo(MethodInfoTest.class.getName()).getMethodInfo()
                     .getSingleMethod("publicMethodWithArgs");
             assertThat(mi).isNotNull();
-            assertThatCode(() -> {
-                mi.loadClassAndGetMethod();
-            }).doesNotThrowAnyException();
+            assertThatCode(mi::loadClassAndGetMethod).doesNotThrowAnyException();
             assertThat(mi.loadClassAndGetMethod()).isNotNull();
 
             // Extract array-typed params from method params

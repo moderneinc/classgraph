@@ -42,7 +42,7 @@ public class ModuleReaderProxy implements Closeable {
     private final AutoCloseable moduleReader;
 
     /** Class<Collector> collectorClass = Class.forName("java.util.stream.Collector"); */
-    private static Class<?> collectorClass;
+    private static final Class<?> collectorClass;
 
     /** Collector<Object, ?, List<Object>> collectorsToList = Collectors.toList(); */
     private static Object collectorsToList;

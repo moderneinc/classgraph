@@ -255,7 +255,7 @@ final class GraphvizDotfileGenerator {
         buf.append("</b></font></td></tr>");
 
         // Create a color that matches the box background color, but is darker
-        final float darkness = 0.8f;
+        final float darkness = 0.8F;
         final int r = (int) (Integer.parseInt(boxBgColor.substring(0, 2), 16) * darkness);
         final int g = (int) (Integer.parseInt(boxBgColor.substring(2, 4), 16) * darkness);
         final int b = (int) (Integer.parseInt(boxBgColor.substring(4, 6), 16) * darkness);
@@ -288,7 +288,7 @@ final class GraphvizDotfileGenerator {
             CollectionUtils.sortIfNotEmpty(fieldInfoSorted);
             for (int i = fieldInfoSorted.size() - 1; i >= 0; --i) {
                 // Remove serialVersionUID field
-                if (fieldInfoSorted.get(i).getName().equals("serialVersionUID")) {
+                if ("serialVersionUID".equals(fieldInfoSorted.get(i).getName())) {
                     fieldInfoSorted.remove(i);
                 }
             }
@@ -351,9 +351,9 @@ final class GraphvizDotfileGenerator {
                 final MethodInfo mi = methodInfoSorted.get(i);
                 final String name = mi.getName();
                 final int numParam = mi.getParameterInfo().length;
-                if (name.equals("<clinit>") || name.equals("hashCode") && numParam == 0
-                        || name.equals("toString") && numParam == 0 || name.equals("equals") && numParam == 1
-                                && mi.getTypeDescriptor().toString().equals("boolean (java.lang.Object)")) {
+                if ("<clinit>".equals(name) || "hashCode".equals(name) && numParam == 0
+                        || "toString".equals(name) && numParam == 0 || "equals".equals(name) && numParam == 1
+                                && "boolean (java.lang.Object)".equals(mi.getTypeDescriptor().toString())) {
                     methodInfoSorted.remove(i);
                 }
             }
@@ -392,7 +392,7 @@ final class GraphvizDotfileGenerator {
                     if (buf.charAt(buf.length() - 1) != ' ') {
                         buf.append(' ');
                     }
-                    if (!mi.getName().equals("<init>")) {
+                    if (!"<init>".equals(mi.getName())) {
                         // Don't list return type for constructors
                         final TypeSignature resultTypeSig = mi.getTypeSignatureOrTypeDescriptor().getResultType();
                         htmlEncode(
@@ -406,7 +406,7 @@ final class GraphvizDotfileGenerator {
                     // Method name
                     buf.append("<td align='left' valign='top'>");
                     buf.append("<b>");
-                    if (mi.getName().equals("<init>")) {
+                    if ("<init>".equals(mi.getName())) {
                         // Show class name for constructors
                         htmlEncode(ci.getSimpleName(), buf);
                     } else {
@@ -555,7 +555,7 @@ final class GraphvizDotfileGenerator {
         for (final ClassInfo classNode : standardClassNodes) {
             for (final ClassInfo directSuperclassNode : classNode.getSuperclasses().directOnly()) {
                 if (directSuperclassNode != null && allVisibleNodes.contains(directSuperclassNode.getName())
-                        && !directSuperclassNode.getName().equals("java.lang.Object")) {
+                        && !"java.lang.Object".equals(directSuperclassNode.getName())) {
                     // class --> superclass
                     buf.append("  \"").append(classNode.getName()).append("\" -> \"")
                             .append(directSuperclassNode.getName()).append("\" [arrowsize=2.5]\n");

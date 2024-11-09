@@ -13,11 +13,11 @@ import io.github.classgraph.ScanResult;
  */
 public class EnumTest {
     /** Regular enum */
-    private static enum MyEnumWithoutMethod {
-        A, B, C;
+    private enum MyEnumWithoutMethod {
+        A, B, C
     }
 
-    private static enum EnumWithMethod {
+    private enum EnumWithMethod {
         P(1), Q(2);
 
         int val;

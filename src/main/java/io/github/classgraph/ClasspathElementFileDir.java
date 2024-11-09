@@ -415,7 +415,7 @@ class ClasspathElementFileDir extends ClasspathElement {
                     // If this is a modular jar, ignore all classfiles other than "module-info.class" in the
                     // default package, since these are disallowed.
                     if (isModularJar && isDefaultPackage && fileInDirRelativePath.endsWith(".class")
-                            && !fileInDirRelativePath.equals("module-info.class")) {
+                            && !"module-info.class".equals(fileInDirRelativePath)) {
                         continue;
                     }
 
@@ -443,10 +443,10 @@ class ClasspathElementFileDir extends ClasspathElement {
                     }
                 }
             }
-        } else if (scanSpec.enableClassInfo && dirRelativePath.equals("/")) {
+        } else if (scanSpec.enableClassInfo && "/".equals(dirRelativePath)) {
             // Always check for module descriptor in package root, even if package root isn't in accept
             for (final File fileInDir : filesInDir) {
-                if (fileInDir.getName().equals("module-info.class") && fileInDir.isFile()) {
+                if ("module-info.class".equals(fileInDir.getName()) && fileInDir.isFile()) {
                     final Resource resource = newResource("module-info.class", fileInDir, nestedJarHandler);
                     addAcceptedResource(resource, parentMatchStatus, /* isClassfileOnly = */ true, subLog);
                     fileToLastModified.put(fileInDir, fileInDir.lastModified());

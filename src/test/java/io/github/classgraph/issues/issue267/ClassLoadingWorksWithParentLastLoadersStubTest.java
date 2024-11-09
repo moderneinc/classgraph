@@ -119,7 +119,7 @@ class FakeRestartClassLoader extends ClassLoader {
         try (final DataInputStream in = new DataInputStream(
                 getClass().getClassLoader().getResourceAsStream(name))) {
             final int size = in.available();
-            final byte buff[] = new byte[size];
+            final byte[] buff = new byte[size];
             in.readFully(buff);
             return buff;
         }
@@ -132,7 +132,6 @@ class FakeRestartClassLoader extends ClassLoader {
             throw new IllegalArgumentException("Could not find classfile " + classfileName);
         }
         final String classfilePath = classfileResource.getFile();
-        final String packageRoot = classfilePath.substring(0, classfilePath.length() - classfileName.length() - 1);
-        return packageRoot;
+        return classfilePath.substring(0, classfilePath.length() - classfileName.length() - 1);
     }
 }

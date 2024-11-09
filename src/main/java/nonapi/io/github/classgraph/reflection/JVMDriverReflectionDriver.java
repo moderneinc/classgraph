@@ -85,12 +85,12 @@ class JVMDriverReflectionDriver extends ReflectionDriver {
                 boolean.class);
         try {
             // JDK 7 and 8
-            final Method forName0_method = findStaticMethod(Class.class, "forName0", String.class, boolean.class,
+            final Method forName0Method = findStaticMethod(Class.class, "forName0", String.class, boolean.class,
                     ClassLoader.class);
             classFinder = new ClassFinder() {
                 @Override
                 public Class<?> findClass(final String className) throws Exception {
-                    return (Class<?>) forName0_method.invoke(null, className, true,
+                    return (Class<?>) forName0Method.invoke(null, className, true,
                             Thread.currentThread().getContextClassLoader());
                 }
             };
@@ -116,12 +116,12 @@ class JVMDriverReflectionDriver extends ReflectionDriver {
         if (classFinder == null) {
             try {
                 // IBM Semeru
-                final Method forNameImpl_method = findStaticMethod(Class.class, "forNameImpl", String.class,
+                final Method forNameImplMethod = findStaticMethod(Class.class, "forNameImpl", String.class,
                         boolean.class, ClassLoader.class);
                 classFinder = new ClassFinder() {
                     @Override
                     public Class<?> findClass(final String className) throws Exception {
-                        return (Class<?>) forNameImpl_method.invoke(null, className, true,
+                        return (Class<?>) forNameImplMethod.invoke(null, className, true,
                                 Thread.currentThread().getContextClassLoader());
                     }
                 };
@@ -132,11 +132,11 @@ class JVMDriverReflectionDriver extends ReflectionDriver {
         if (classFinder == null) {
             // Fallback if the above fails: just use Class.forName. 
             // This won't find private non-exported classes in other modules.
-            final Method forName_method = findStaticMethod(Class.class, "forName", String.class);
+            final Method forNameMethod = findStaticMethod(Class.class, "forName", String.class);
             classFinder = new ClassFinder() {
                 @Override
                 public Class<?> findClass(final String className) throws Exception {
-                    return (Class<?>) forName_method.invoke(null, className);
+                    return (Class<?>) forNameMethod.invoke(null, className);
                 }
             };
         }

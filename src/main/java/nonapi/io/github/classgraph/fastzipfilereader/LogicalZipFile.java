@@ -125,7 +125,7 @@ public class LogicalZipFile extends ZipFileSlice {
     private static final byte[] AUTOMATIC_MODULE_NAME_KEY = manifestKeyToBytes("Automatic-Module-Name");
 
     /** For quickly converting ASCII characters to lower case. */
-    private static byte[] toLowerCase = new byte[256];
+    private static final byte[] toLowerCase = new byte[256];
     static {
         for (int i = 32; i < 127; i++) {
             toLowerCase[i] = (byte) Character.toLowerCase((char) i);
@@ -297,7 +297,7 @@ public class LogicalZipFile extends ZipFileSlice {
             } else if (keyMatchesAtPosition(manifest, IMPLEMENTATION_TITLE_KEY, i)) {
                 final Entry<String, Integer> manifestValueAndEndIdx = getManifestValue(manifest,
                         i + IMPLEMENTATION_TITLE_KEY.length + 1);
-                if (manifestValueAndEndIdx.getKey().equalsIgnoreCase("Java Runtime Environment")) {
+                if ("Java Runtime Environment".equalsIgnoreCase(manifestValueAndEndIdx.getKey())) {
                     isJREJar = true;
                 }
                 i = manifestValueAndEndIdx.getValue();
@@ -305,7 +305,7 @@ public class LogicalZipFile extends ZipFileSlice {
             } else if (keyMatchesAtPosition(manifest, SPECIFICATION_TITLE_KEY, i)) {
                 final Entry<String, Integer> manifestValueAndEndIdx = getManifestValue(manifest,
                         i + SPECIFICATION_TITLE_KEY.length + 1);
-                if (manifestValueAndEndIdx.getKey().equalsIgnoreCase("Java Platform API Specification")) {
+                if ("Java Platform API Specification".equalsIgnoreCase(manifestValueAndEndIdx.getKey())) {
                     isJREJar = true;
                 }
                 i = manifestValueAndEndIdx.getValue();
@@ -334,10 +334,10 @@ public class LogicalZipFile extends ZipFileSlice {
                 final Entry<String, Integer> manifestValueAndEndIdx = getManifestValue(manifest,
                         i + SPRING_BOOT_CLASSES_KEY.length + 1);
                 final String springBootClassesFieldVal = manifestValueAndEndIdx.getKey();
-                if (!springBootClassesFieldVal.equals("BOOT-INF/classes")
-                        && !springBootClassesFieldVal.equals("BOOT-INF/classes/")
-                        && !springBootClassesFieldVal.equals("WEB-INF/classes")
-                        && !springBootClassesFieldVal.equals("WEB-INF/classes/")) {
+                if (!"BOOT-INF/classes".equals(springBootClassesFieldVal)
+                        && !"BOOT-INF/classes/".equals(springBootClassesFieldVal)
+                        && !"WEB-INF/classes".equals(springBootClassesFieldVal)
+                        && !"WEB-INF/classes/".equals(springBootClassesFieldVal)) {
                     throw new IOException("Spring boot classes are at \"" + springBootClassesFieldVal
                             + "\" rather than the standard location \"BOOT-INF/classes/\" or \"WEB-INF/classes/\" "
                             + "-- please report this at https://github.com/classgraph/classgraph/issues");
@@ -348,9 +348,9 @@ public class LogicalZipFile extends ZipFileSlice {
                 final Entry<String, Integer> manifestValueAndEndIdx = getManifestValue(manifest,
                         i + SPRING_BOOT_LIB_KEY.length + 1);
                 final String springBootLibFieldVal = manifestValueAndEndIdx.getKey();
-                if (!springBootLibFieldVal.equals("BOOT-INF/lib") && !springBootLibFieldVal.equals("BOOT-INF/lib/")
-                        && !springBootLibFieldVal.equals("WEB-INF/lib")
-                        && !springBootLibFieldVal.equals("WEB-INF/lib/")) {
+                if (!"BOOT-INF/lib".equals(springBootLibFieldVal) && !"BOOT-INF/lib/".equals(springBootLibFieldVal)
+                        && !"WEB-INF/lib".equals(springBootLibFieldVal)
+                        && !"WEB-INF/lib/".equals(springBootLibFieldVal)) {
                     throw new IOException("Spring boot lib jars are at \"" + springBootLibFieldVal
                             + "\" rather than the standard location \"BOOT-INF/lib/\" or \"WEB-INF/lib/\" "
                             + "-- please report this at https://github.com/classgraph/classgraph/issues");
@@ -360,7 +360,7 @@ public class LogicalZipFile extends ZipFileSlice {
             } else if (keyMatchesAtPosition(manifest, MULTI_RELEASE_KEY, i)) {
                 final Entry<String, Integer> manifestValueAndEndIdx = getManifestValue(manifest,
                         i + MULTI_RELEASE_KEY.length + 1);
-                if (manifestValueAndEndIdx.getKey().equalsIgnoreCase("true")) {
+                if ("true".equalsIgnoreCase(manifestValueAndEndIdx.getKey())) {
                     isMultiReleaseJar = true;
                 }
                 i = manifestValueAndEndIdx.getValue();
@@ -645,8 +645,8 @@ public class LogicalZipFile extends ZipFileSlice {
                 final boolean isDeflated = compressionMethod == /* deflated */ 8;
 
                 // Get compressed and uncompressed size
-                long compressedSize = (cenReader.readUnsignedInt(entOff + 20));
-                long uncompressedSize = (cenReader.readUnsignedInt(entOff + 24));
+                long compressedSize = cenReader.readUnsignedInt(entOff + 20);
+                long uncompressedSize = cenReader.readUnsignedInt(entOff + 24);
 
                 // Get external file attributes
                 final int fileAttributes = cenReader.readUnsignedShort(entOff + 40);

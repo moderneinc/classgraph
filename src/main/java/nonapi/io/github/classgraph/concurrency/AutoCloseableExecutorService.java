@@ -47,7 +47,7 @@ public class AutoCloseableExecutorService extends ThreadPoolExecutor implements 
      *            The number of threads to allocate.
      */
     public AutoCloseableExecutorService(final int numThreads) {
-        super(numThreads, numThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(),
+        super(numThreads, numThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(),
                 new SimpleThreadFactory("ClassGraph-worker-", true));
     }
 

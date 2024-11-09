@@ -51,7 +51,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  *
  * @author R. Kempees
  */
-class WebsphereLibertyClassLoaderHandler implements ClassLoaderHandler {
+final class WebsphereLibertyClassLoaderHandler implements ClassLoaderHandler {
     /** {@code "com.ibm.ws.classloading.internal."} */
     private static final String PKG_PREFIX = "com.ibm.ws.classloading.internal.";
 

@@ -38,7 +38,7 @@ import nonapi.io.github.classgraph.scanspec.ScanSpec;
 import nonapi.io.github.classgraph.utils.LogNode;
 
 /** Extract classpath entries from the Tomcat/Catalina WebappClassLoaderBase. */
-class TomcatWebappClassLoaderBaseHandler implements ClassLoaderHandler {
+final class TomcatWebappClassLoaderBaseHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private TomcatWebappClassLoaderBaseHandler() {
     }
@@ -163,14 +163,14 @@ class TomcatWebappClassLoaderBaseHandler implements ClassLoaderHandler {
                                 base += "!" + (archivePath.startsWith("/") ? archivePath : "/" + archivePath);
                             }
                             final String className = webResourceSet.getClass().getName();
-                            final boolean isJar = className
-                                    .equals("java.org.apache.catalina.webresources.JarResourceSet")
-                                    || className.equals("java.org.apache.catalina.webresources.JarWarResourceSet");
+                            final boolean isJar = "java.org.apache.catalina.webresources.JarResourceSet"
+                                    .equals(className)
+                                    || "java.org.apache.catalina.webresources.JarWarResourceSet".equals(className);
                             // The path within this WebResourceSet where resources will be served from,
                             // e.g. for a resource JAR, this would be "META-INF/resources"
                             final String internalPath = (String) ReflectionUtils.invokeMethod(false, webResourceSet,
                                     "getInternalPath");
-                            if (internalPath != null && !internalPath.isEmpty() && !internalPath.equals("/")) {
+                            if (internalPath != null && !internalPath.isEmpty() && !"/".equals(internalPath)) {
                                 classpathOrder.addClasspathEntryObject(base + (isJar ? "!" : "")
                                         + (internalPath.startsWith("/") ? internalPath : "/" + internalPath),
                                         classLoader, scanSpec, log);

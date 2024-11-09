@@ -38,7 +38,7 @@ import nonapi.io.github.classgraph.utils.VersionFinder.OperatingSystem;
 public final class URLPathEncoder {
 
     /** Whether an ASCII character is URL-safe. */
-    private static boolean[] safe = new boolean[256];
+    private static final boolean[] safe = new boolean[256];
 
     static {
         for (int i = 'a'; i <= 'z'; i++) {

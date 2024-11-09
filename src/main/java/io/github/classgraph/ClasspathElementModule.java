@@ -344,7 +344,7 @@ class ClasspathElementModule extends ClasspathElement {
                 // If this is a modular jar, ignore all classfiles other than "module-info.class" in the
                 // default package, since these are disallowed.
                 if (isModularJar && relativePath.indexOf('/') < 0 && relativePath.endsWith(".class")
-                        && !relativePath.equals("module-info.class")) {
+                        && !"module-info.class".equals(relativePath)) {
                     continue;
                 }
 
@@ -385,7 +385,7 @@ class ClasspathElementModule extends ClasspathElement {
                         // Add accepted resource
                         addAcceptedResource(newResource(relativePath), parentMatchStatus,
                                 /* isClassfileOnly = */ false, subLog);
-                    } else if (scanSpec.enableClassInfo && relativePath.equals("module-info.class")) {
+                    } else if (scanSpec.enableClassInfo && "module-info.class".equals(relativePath)) {
                         // Add module descriptor as an accepted classfile resource, so that it is scanned,
                         // but don't add it to the list of resources in the ScanResult, since it is not
                         // in an accepted package (#352)
@@ -469,7 +469,7 @@ class ClasspathElementModule extends ClasspathElement {
     File getFile() {
         try {
             final URI uri = moduleRef.getLocation();
-            if (uri != null && !uri.getScheme().equals("jrt")) {
+            if (uri != null && !"jrt".equals(uri.getScheme())) {
                 final File file = new File(uri);
                 if (file.exists()) {
                     return file;

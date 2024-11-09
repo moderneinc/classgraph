@@ -43,7 +43,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
 /**
  * Extract classpath entries from the Quarkus ClassLoader.
  */
-class QuarkusClassLoaderHandler implements ClassLoaderHandler {
+final class QuarkusClassLoaderHandler implements ClassLoaderHandler {
     // Classloader until Quarkus 1.2
     private static final String RUNTIME_CLASSLOADER = "io.quarkus.runner.RuntimeClassLoader";
 
