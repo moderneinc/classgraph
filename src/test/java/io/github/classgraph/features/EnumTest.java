@@ -29,9 +29,7 @@ public class EnumTest {
         int getVal() {
             return val;
         }
-    };
-
-    /** Test regular enum */
+    }/** Test regular enum */
     @Test
     public void enumWithoutMethod() throws Exception {
         try (ScanResult scanResult = new ClassGraph().acceptClasses(MyEnumWithoutMethod.class.getName())

@@ -784,7 +784,7 @@ public class LogicalZipFile extends ZipFileSlice {
                 entries.add(entry);
 
                 // Record manifest entry
-                if (entry.entryName.equals(MANIFEST_PATH)) {
+                if (MANIFEST_PATH.equals(entry.entryName)) {
                     manifestZipEntry = entry;
                 }
             }

@@ -1448,7 +1448,7 @@ public final class ScanResult implements Closeable, AutoCloseable {
         // Deserialize the JSON
         final SerializationFormat deserialized = JSONDeserializer.deserializeObject(SerializationFormat.class,
                 json);
-        if (deserialized == null || !deserialized.format.equals(CURRENT_SERIALIZATION_FORMAT)) {
+        if (deserialized == null || !CURRENT_SERIALIZATION_FORMAT.equals(deserialized.format)) {
             // Probably the deserialization failed before now anyway, if fields have changed, etc.
             throw new IllegalArgumentException("JSON was serialized by newer version of ClassGraph");
         }

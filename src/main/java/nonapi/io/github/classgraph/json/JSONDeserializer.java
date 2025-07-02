@@ -623,7 +623,7 @@ public final class JSONDeserializer {
             final JSONObject itemJsonObject = (JSONObject) parsedJSON;
             if (!itemJsonObject.items.isEmpty()) {
                 final Entry<String, Object> firstItem = itemJsonObject.items.get(0);
-                if (firstItem.getKey().equals(JSONUtils.ID_KEY)) {
+                if (JSONUtils.ID_KEY.equals(firstItem.getKey())) {
                     final Object firstItemValue = firstItem.getValue();
                     if (firstItemValue == null || !CharSequence.class.isAssignableFrom(firstItemValue.getClass())) {
                         idToObjectInstance.put((CharSequence) firstItemValue, objectInstance);
