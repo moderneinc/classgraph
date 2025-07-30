@@ -84,9 +84,9 @@ public class DeclaredVsNonDeclaredTest {
      */
     private void compareResults(final ClassInfo superClassInfo, final ClassInfo subClassInfo,
             final boolean ignoreVisibility) {
-        final Predicate<String> filterOutClassMethods = name -> !name.equals("wait") && !name.equals("equals")
-                && !name.equals("toString") && !name.equals("hashCode") && !name.equals("getClass")
-                && !name.equals("notify") && !name.equals("notifyAll");
+        final Predicate<String> filterOutClassMethods = name -> !"wait".equals(name) && !"equals".equals(name)
+                && !"toString".equals(name) && !"hashCode".equals(name) && !"getClass".equals(name)
+                && !"notify".equals(name) && !"notifyAll".equals(name);
 
         // METHODS
 

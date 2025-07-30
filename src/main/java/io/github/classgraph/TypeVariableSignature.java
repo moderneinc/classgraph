@@ -224,7 +224,7 @@ public final class TypeVariableSignature extends ClassRefOrTypeVariableSignature
     @Override
     public boolean equalsIgnoringTypeParams(final TypeSignature other) {
         if (other instanceof ClassRefTypeSignature) {
-            if (((ClassRefTypeSignature) other).className.equals("java.lang.Object")) {
+            if ("java.lang.Object".equals(((ClassRefTypeSignature) other).className)) {
                 // java.lang.Object can be reconciled with any type, so it can be reconciled with
                 // any type variable
                 return true;

@@ -357,7 +357,7 @@ public class ClassGraphTest {
                         .forEachByteArrayThrowingIOException(new ByteArrayConsumerThrowsIOException() {
                             @Override
                             public void accept(final Resource resource, final byte[] byteArray) throws IOException {
-                                readFileContents.set(new String(byteArray).equals("File contents"));
+                                readFileContents.set("File contents".equals(new String(byteArray)));
                             }
                         });
             } catch (final IOException e) {

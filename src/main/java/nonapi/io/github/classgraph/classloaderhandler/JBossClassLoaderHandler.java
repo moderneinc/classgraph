@@ -50,7 +50,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  * <p>
  * https://github.com/jboss-modules/jboss-modules/blob/master/src/main/java/org/jboss/modules/ModuleClassLoader.java
  */
-class JBossClassLoaderHandler implements ClassLoaderHandler {
+final class JBossClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private JBossClassLoaderHandler() {
     }

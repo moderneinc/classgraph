@@ -13,11 +13,11 @@ import io.github.classgraph.ScanResult;
  */
 public class EnumTest {
     /** Regular enum */
-    private static enum MyEnumWithoutMethod {
-        A, B, C;
+    private enum MyEnumWithoutMethod {
+        A, B, C
     }
 
-    private static enum EnumWithMethod {
+    private enum EnumWithMethod {
         P(1), Q(2);
 
         int val;
@@ -29,9 +29,7 @@ public class EnumTest {
         int getVal() {
             return val;
         }
-    };
-
-    /** Test regular enum */
+    }/** Test regular enum */
     @Test
     public void enumWithoutMethod() throws Exception {
         try (ScanResult scanResult = new ClassGraph().acceptClasses(MyEnumWithoutMethod.class.getName())
