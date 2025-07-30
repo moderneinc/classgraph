@@ -306,8 +306,8 @@ public final class ClassTypeSignature extends HierarchicalTypeSignature {
         if (superclassSignature != null) {
             final String superSig = superclassSignature.toString(useSimpleNames);
             // superSig could have a class type annotation even if the superclass is Object
-            if (!superSig.equals("java.lang.Object")
-                    && !(superSig.equals("Object") && superclassSignature.className.equals("java.lang.Object"))) {
+            if (!"java.lang.Object".equals(superSig)
+                    && !("Object".equals(superSig) && "java.lang.Object".equals(superclassSignature.className))) {
                 buf.append(" extends ");
                 buf.append(superSig);
             }

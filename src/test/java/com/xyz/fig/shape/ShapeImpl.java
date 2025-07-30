@@ -21,7 +21,7 @@ public abstract class ShapeImpl implements Shape {
      * @param y
      *            the y
      */
-    public ShapeImpl(final float x, final float y) {
+    protected ShapeImpl(final float x, final float y) {
         this.x = x;
         this.y = y;
     }
