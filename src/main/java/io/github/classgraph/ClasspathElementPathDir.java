@@ -353,7 +353,7 @@ class ClasspathElementPathDir extends ClasspathElement {
         if (!dirRelativePathStr.endsWith("/")) {
             dirRelativePathStr += "/";
         }
-        final boolean isDefaultPackage = dirRelativePathStr.equals("/");
+        final boolean isDefaultPackage = "/".equals(dirRelativePathStr);
 
         if (nestedClasspathRootPrefixes != null && nestedClasspathRootPrefixes.contains(dirRelativePathStr)) {
             if (log != null) {
@@ -428,7 +428,7 @@ class ClasspathElementPathDir extends ClasspathElement {
                     // If this is a modular jar, ignore all classfiles other than "module-info.class" in the
                     // default package, since these are disallowed.
                     if (isModularJar && isDefaultPackage && subPathRelativeStr.endsWith(".class")
-                            && !subPathRelativeStr.equals("module-info.class")) {
+                            && !"module-info.class".equals(subPathRelativeStr)) {
                         continue;
                     }
 
@@ -460,10 +460,10 @@ class ClasspathElementPathDir extends ClasspathElement {
                     }
                 }
             }
-        } else if (scanSpec.enableClassInfo && dirRelativePathStr.equals("/")) {
+        } else if (scanSpec.enableClassInfo && "/".equals(dirRelativePathStr)) {
             // Always check for module descriptor in package root, even if package root isn't in accept
             for (final Path subPath : pathsInDir) {
-                if (subPath.getFileName().toString().equals("module-info.class") && Files.isRegularFile(subPath)) {
+                if ("module-info.class".equals(subPath.getFileName().toString()) && Files.isRegularFile(subPath)) {
                     final Resource resource = newResource(subPath, nestedJarHandler);
                     addAcceptedResource(resource, parentMatchStatus, /* isClassfileOnly = */ true, subLog);
                     try {

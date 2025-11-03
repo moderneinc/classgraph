@@ -369,7 +369,7 @@ final class JSONParser extends Parser {
             final Object value = parseJSON();
 
             // Check for special object id key
-            if (key.equals(JSONUtils.ID_KEY)) {
+            if (JSONUtils.ID_KEY.equals(key)) {
                 if (value == null) {
                     throw new ParseException(this, "Got null value for \"" + JSONUtils.ID_KEY + "\" key");
                 }
