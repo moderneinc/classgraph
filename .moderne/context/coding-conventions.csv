@@ -1,0 +1,30 @@
+Convention type,Pattern,Example,Frequency,Scope
+comments,Classes have Javadoc documentation,AnnotationClassRef,,project-wide
+comments,Methods have Javadoc documentation,AnnotationClassRef,,project-wide
+naming,get* method naming pattern,getName,,project-wide
+naming,load* method naming pattern,loadClass,,project-wide
+naming,set* method naming pattern,setScanResult,,project-wide
+naming,is* method naming pattern,isInherited,,project-wide
+naming,find* method naming pattern,findReferencedClassInfo,,project-wide
+naming,Handler suffix for classes,AnnotationInvocationHandler,,project-wide
+naming,convert* method naming pattern,convertWrapperArraysToPrimitiveArrays,,project-wide
+naming,camelCase for constants,serialVersionUID,,project-wide
+naming,UPPER_SNAKE_CASE for constants,EMPTY_LIST,,project-wide
+naming,handle* method naming pattern,handleRepeatableAnnotations,,project-wide
+naming,Base prefix for base classes,BaseTypeSignature,,project-wide
+naming,process* method naming pattern,processScanResult,,project-wide
+naming,Exception suffix for classes,ClassGraphException,,project-wide
+naming,has* method naming pattern,hasAnnotation,,project-wide
+naming,parse* method naming pattern,parseReferenceTypeSignature,,project-wide
+naming,can* method naming pattern,canHandle,,project-wide
+naming,Service suffix for classes,AutoCloseableExecutorService,,project-wide
+naming,Factory suffix for classes,SimpleThreadFactory,,project-wide
+naming,Utils suffix for classes,JSONUtils,,project-wide
+naming,Impl suffix for classes,ParameterizedTypeImpl,,project-wide
+naming,Spec suffix for classes,ScanSpec,,project-wide
+imports,Static imports from org.assertj.core.api,org.assertj.core.api.Assertions.assertThat,,project-wide
+naming,Test suffix for classes,DefaultPackageTest,,project-wide
+imports,Static imports from org.junit.jupiter.api,org.junit.jupiter.api.Assertions.assertEquals,,project-wide
+naming,create* method naming pattern,createAnonymous,,project-wide
+imports,Static imports from nonapi.io.github.classgraph.classpath,nonapi.io.github.classgraph.classpath.SystemJarFinder.getJreRtJarPath,,project-wide
+imports,Static imports from org.assertj.core.data,org.assertj.core.data.Offset.offset,,project-wide

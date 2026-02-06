@@ -1,0 +1,2 @@
+Source path,Artifact ID,Group ID,Name,Description,Version
+pom.xml,maven-gpg-plugin,org.apache.maven.plugins,Luke Hutchison,"The uber-fast, ultra-lightweight classpath and module scanner for JVM languages.",1.0

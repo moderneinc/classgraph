@@ -1,0 +1,4 @@
+Source path,Class name,Simple name,Asset type,Description,Fields
+src/test/java/io/github/classgraph/issues/issue216/Issue216Test.java,io.github.classgraph.issues.issue216.Issue216Test,Issue216Test,Entity,Entity issue216 test,
+src/test/java/io/github/classgraph/issues/issue223/Issue223Test.java,io.github.classgraph.issues.issue223.Issue223Test,Issue223Test,Entity,Entity issue223 test,
+src/test/java/io/github/classgraph/issues/issue238/Issue238Test.java,io.github.classgraph.issues.issue238.Issue238Test,Issue238Test,Entity,Entity issue238 test,

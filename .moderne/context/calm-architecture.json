@@ -1,0 +1,40 @@
+{
+  "nodes" : [ {
+    "uniqueId" : "maven-gpg-plugin",
+    "nodeType" : "system",
+    "name" : "Luke Hutchison",
+    "description" : "The uber-fast, ultra-lightweight classpath and module scanner for JVM languages."
+  }, {
+    "uniqueId" : "issue216-test-data",
+    "nodeType" : "data-asset",
+    "name" : "Issue216Test",
+    "description" : "Entity issue216 test"
+  }, {
+    "uniqueId" : "issue223-test-data",
+    "nodeType" : "data-asset",
+    "name" : "Issue223Test",
+    "description" : "Entity issue223 test"
+  }, {
+    "uniqueId" : "issue238-test-data",
+    "nodeType" : "data-asset",
+    "name" : "Issue238Test",
+    "description" : "Entity issue238 test"
+  }, {
+    "uniqueId" : "issue216-test-db",
+    "nodeType" : "database",
+    "name" : "Issue216Test Store",
+    "description" : "SQL database for Issue216Test data"
+  }, {
+    "uniqueId" : "issue223-test-db",
+    "nodeType" : "database",
+    "name" : "Issue223Test Store",
+    "description" : "SQL database for Issue223Test data"
+  }, {
+    "uniqueId" : "issue238-test-db",
+    "nodeType" : "database",
+    "name" : "Issue238Test Store",
+    "description" : "SQL database for Issue238Test data"
+  } ],
+  "relationships" : [ ],
+  "$schema" : "https://calm.finos.org/draft/2025-03/meta/calm.json"
+}
