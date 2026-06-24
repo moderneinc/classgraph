@@ -484,8 +484,8 @@ public final class JSONSerializer {
             final boolean onlySerializePublicFields, final ClassFieldCache classFieldCache) {
         final HashMap<ReferenceEqualityKey<Object>, JSONObject> objToJSONVal = new HashMap<>();
 
-        final Object rootJsonVal = toJSONGraph(obj, new HashSet<ReferenceEqualityKey<Object>>(),
-                new HashSet<ReferenceEqualityKey<Object>>(), classFieldCache, objToJSONVal,
+        final Object rootJsonVal = toJSONGraph(obj, new HashSet<>(),
+                new HashSet<>(), classFieldCache, objToJSONVal,
                 onlySerializePublicFields);
 
         final Map<ReferenceEqualityKey<JSONReference>, CharSequence> jsonReferenceToId = new HashMap<>();

@@ -59,11 +59,11 @@ public class Issue431Test {
         /** f */
         static final byte f = (byte) 10;
         /** g */
-        static final float g = 1.0f;
+        static final float g = 1.0F;
         /** h */
-        static final float h = 0.0f;
+        static final float h = 0.0F;
         /** i */
-        static final double i = 1.0d;
+        static final double i = 1.0D;
     }
 
     /**

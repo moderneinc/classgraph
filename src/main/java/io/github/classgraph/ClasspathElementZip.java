@@ -284,7 +284,7 @@ class ClasspathElementZip extends ClasspathElement {
                 // Bundle-ClassPath path is treated as if "." is in the first position, since child
                 // classpath entries are always added to the classpath after the parent classpath
                 // entry that they were obtained from).
-                if (!childBundlePath.isEmpty() && !childBundlePath.equals(".")) {
+                if (!childBundlePath.isEmpty() && !".".equals(childBundlePath)) {
                     // Resolve Bundle-ClassPath entry within jar
                     final String childClassPathEltPath = zipFilePathPrefix + FileUtils.sanitizeEntryPath(
                             childBundlePath, /* removeInitialSlash = */ true, /* removeFinalSlash = */ true);
@@ -347,31 +347,31 @@ class ClasspathElementZip extends ClasspathElement {
                     perms = null;
                 } else {
                     perms = new HashSet<>();
-                    if ((fileAttributes & 0400) > 0) {
+                    if ((fileAttributes & 256) > 0) {
                         perms.add(PosixFilePermission.OWNER_READ);
                     }
-                    if ((fileAttributes & 0200) > 0) {
+                    if ((fileAttributes & 128) > 0) {
                         perms.add(PosixFilePermission.OWNER_WRITE);
                     }
-                    if ((fileAttributes & 0100) > 0) {
+                    if ((fileAttributes & 64) > 0) {
                         perms.add(PosixFilePermission.OWNER_EXECUTE);
                     }
-                    if ((fileAttributes & 0040) > 0) {
+                    if ((fileAttributes & 32) > 0) {
                         perms.add(PosixFilePermission.GROUP_READ);
                     }
-                    if ((fileAttributes & 0020) > 0) {
+                    if ((fileAttributes & 16) > 0) {
                         perms.add(PosixFilePermission.GROUP_WRITE);
                     }
-                    if ((fileAttributes & 0010) > 0) {
+                    if ((fileAttributes & 8) > 0) {
                         perms.add(PosixFilePermission.GROUP_EXECUTE);
                     }
-                    if ((fileAttributes & 0004) > 0) {
+                    if ((fileAttributes & 4) > 0) {
                         perms.add(PosixFilePermission.OTHERS_READ);
                     }
-                    if ((fileAttributes & 0002) > 0) {
+                    if ((fileAttributes & 2) > 0) {
                         perms.add(PosixFilePermission.OTHERS_WRITE);
                     }
-                    if ((fileAttributes & 0001) > 0) {
+                    if ((fileAttributes & 1) > 0) {
                         perms.add(PosixFilePermission.OTHERS_EXECUTE);
                     }
                 }
@@ -534,7 +534,7 @@ class ClasspathElementZip extends ClasspathElement {
             // If this is a modular jar, ignore all classfiles other than "module-info.class" in the
             // default package, since these are disallowed.
             if (isModularJar && relativePath.indexOf('/') < 0 && relativePath.endsWith(".class")
-                    && !relativePath.equals("module-info.class")) {
+                    && !"module-info.class".equals(relativePath)) {
                 continue;
             }
 
@@ -623,7 +623,7 @@ class ClasspathElementZip extends ClasspathElement {
                                 && scanSpec.classfileIsSpecificallyAccepted(relativePath))) {
                     // Resource is accepted
                     addAcceptedResource(resource, parentMatchStatus, /* isClassfileOnly = */ false, subLog);
-                } else if (scanSpec.enableClassInfo && relativePath.equals("module-info.class")) {
+                } else if (scanSpec.enableClassInfo && "module-info.class".equals(relativePath)) {
                     // Add module descriptor as an accepted classfile resource, so that it is scanned,
                     // but don't add it to the list of resources in the ScanResult, since it is not
                     // in an accepted package (#352)

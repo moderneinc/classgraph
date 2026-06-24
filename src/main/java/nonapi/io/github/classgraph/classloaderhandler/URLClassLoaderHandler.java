@@ -37,7 +37,7 @@ import nonapi.io.github.classgraph.scanspec.ScanSpec;
 import nonapi.io.github.classgraph.utils.LogNode;
 
 /** ClassLoaderHandler that is able to extract the URLs from a URLClassLoader. */
-class URLClassLoaderHandler implements ClassLoaderHandler {
+final class URLClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private URLClassLoaderHandler() {
     }

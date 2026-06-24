@@ -39,7 +39,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  * 
  * @author lukehutch
  */
-class WebsphereTraditionalClassLoaderHandler implements ClassLoaderHandler {
+final class WebsphereTraditionalClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private WebsphereTraditionalClassLoaderHandler() {
     }
