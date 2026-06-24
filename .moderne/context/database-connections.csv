@@ -1,0 +1,4 @@
+Entity ID,Source path,Entity/Table name,Entity class,Repository class,Connection type,Database type
+entity:io.github.classgraph.issues.issue216.Issue216Test,src/test/java/io/github/classgraph/issues/issue216/Issue216Test.java,Issue216Test,io.github.classgraph.issues.issue216.Issue216Test,,JPA,
+entity:io.github.classgraph.issues.issue223.Issue223Test,src/test/java/io/github/classgraph/issues/issue223/Issue223Test.java,Issue223Test,io.github.classgraph.issues.issue223.Issue223Test,,JPA,
+entity:io.github.classgraph.issues.issue238.Issue238Test,src/test/java/io/github/classgraph/issues/issue238/Issue238Test.java,Issue238Test,io.github.classgraph.issues.issue238.Issue238Test,,JPA,
