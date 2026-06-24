@@ -161,8 +161,8 @@ public final class JarUtils {
                     // If custom URL schemes have been registered, allow those to be used as delimiters too
                     for (final String scheme : scanSpec.allowedURLSchemes) {
                         // Skip schemes already handled by the faster matching code above
-                        if (!scheme.equals("http") && !scheme.equals("https") && !scheme.equals("jar")
-                                && !scheme.equals("file")) {
+                        if (!"http".equals(scheme) && !"https".equals(scheme) && !"jar".equals(scheme)
+                                && !"file".equals(scheme)) {
                             final int schemeLen = scheme.length();
                             final int startIdx = i - schemeLen;
                             if (pathStr.regionMatches(true, startIdx, scheme, 0, schemeLen)

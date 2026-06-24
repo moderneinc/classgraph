@@ -11,7 +11,7 @@ public abstract class P {
      * @param strings
      *            the strings
      */
-    public P(final String... strings) {
+    protected P(final String... strings) {
     }
 
     /**

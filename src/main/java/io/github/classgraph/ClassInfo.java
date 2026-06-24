@@ -478,7 +478,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
      *            the map from class name to class info
      */
     void addSuperclass(final String superclassName, final Map<String, ClassInfo> classNameToClassInfo) {
-        if (superclassName != null && !superclassName.equals("java.lang.Object")) {
+        if (superclassName != null && !"java.lang.Object".equals(superclassName)) {
             final ClassInfo superclassClassInfo = getOrCreateClassInfo(superclassName, classNameToClassInfo);
             this.addRelatedClass(RelType.SUPERCLASSES, superclassClassInfo);
             superclassClassInfo.addRelatedClass(RelType.SUBCLASSES, this);
@@ -845,7 +845,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
      * A set of classes that indirectly reachable through a directed path, for a given relationship type, and a set
      * of classes that is directly related (only one relationship step away).
      */
-    static class ReachableAndDirectlyRelatedClasses {
+    static final class ReachableAndDirectlyRelatedClasses {
 
         /** The reachable classes. */
         final Set<ClassInfo> reachableClasses;
@@ -1331,7 +1331,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
      * @return true if this class extends the named superclass.
      */
     public boolean extendsSuperclass(final String superclassName) {
-        return (superclassName.equals("java.lang.Object") && isStandardClass())
+        return ("java.lang.Object".equals(superclassName) && isStandardClass())
                 || getSuperclasses().containsName(superclassName);
     }
 
@@ -1683,7 +1683,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
      */
     private List<ClassInfo> getOverrideOrder() {
         if (overrideOrder == null) {
-            overrideOrder = getOverrideOrder(new HashSet<ClassInfo>(), new ArrayList<ClassInfo>());
+            overrideOrder = getOverrideOrder(new HashSet<>(), new ArrayList<>());
         }
         return overrideOrder;
     }
@@ -1701,7 +1701,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
      * @return the list of subclasses of this class, or the empty list if none.
      */
     public ClassInfoList getSubclasses() {
-        if (getName().equals("java.lang.Object")) {
+        if ("java.lang.Object".equals(getName())) {
             // Make an exception for querying all subclasses of java.lang.Object
             return scanResult.getAllStandardClasses();
         } else {
@@ -1739,7 +1739,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
             throw new IllegalArgumentException("More than one superclass: " + superClasses);
         } else {
             final ClassInfo superclass = superClasses.iterator().next();
-            if (superclass.getName().equals("java.lang.Object")) {
+            if ("java.lang.Object".equals(superclass.getName())) {
                 return null;
             } else {
                 return superclass;
@@ -1892,7 +1892,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
      */
     private ClassInfoList getFieldOrMethodAnnotations(final RelType relType) {
         final boolean isField = relType == RelType.FIELD_ANNOTATIONS;
-        if (!(isField ? scanResult.scanSpec.enableFieldInfo : scanResult.scanSpec.enableMethodInfo)
+        if (isField ? scanResult.scanSpec.enableMethodInfo : scanResult.scanSpec.enableFieldInfo
                 || !scanResult.scanSpec.enableAnnotationInfo) {
             throw new IllegalArgumentException("Please call ClassGraph#enable" + (isField ? "Field" : "Method")
                     + "Info() and " + "#enableAnnotationInfo() before #scan()");
@@ -1921,7 +1921,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
     private ClassInfoList getClassesWithFieldOrMethodAnnotation(final RelType relType) {
         final boolean isField = relType == RelType.CLASSES_WITH_FIELD_ANNOTATION
                 || relType == RelType.CLASSES_WITH_NONPRIVATE_FIELD_ANNOTATION;
-        if (!(isField ? scanResult.scanSpec.enableFieldInfo : scanResult.scanSpec.enableMethodInfo)
+        if (isField ? scanResult.scanSpec.enableMethodInfo : scanResult.scanSpec.enableFieldInfo
                 || !scanResult.scanSpec.enableAnnotationInfo) {
             throw new IllegalArgumentException("Please call ClassGraph#enable" + (isField ? "Field" : "Method")
                     + "Info() and " + "#enableAnnotationInfo() before #scan()");
@@ -3272,7 +3272,7 @@ public class ClassInfo extends ScanResultObject implements Comparable<ClassInfo>
                                             : "class ");
             buf.append(useSimpleNames ? ClassInfo.getSimpleName(name) : name);
             final ClassInfo superclass = getSuperclass();
-            if (superclass != null && !superclass.getName().equals("java.lang.Object")) {
+            if (superclass != null && !"java.lang.Object".equals(superclass.getName())) {
                 buf.append(" extends ");
                 superclass.toString(useSimpleNames, buf);
             }

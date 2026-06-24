@@ -71,7 +71,7 @@ public abstract class TypeSignature extends HierarchicalTypeSignature {
      *            the referenced class info.
      */
     @Override
-    final protected void findReferencedClassInfo(final Map<String, ClassInfo> classNameToClassInfo,
+    protected final void findReferencedClassInfo(final Map<String, ClassInfo> classNameToClassInfo,
             final Set<ClassInfo> refdClassInfo, final LogNode log) {
         final Set<String> refdClassNames = new HashSet<>();
         findReferencedClassNames(refdClassNames);
