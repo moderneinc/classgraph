@@ -42,7 +42,6 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.jimfs.Jimfs;
-
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 

@@ -35,7 +35,7 @@ import nonapi.io.github.classgraph.scanspec.ScanSpec;
 import nonapi.io.github.classgraph.utils.LogNode;
 
 /** Extract classpath entries from the Uno-Jar's JarClassLoader and One-Jar's JarClassLoader. */
-class UnoOneJarClassLoaderHandler implements ClassLoaderHandler {
+final class UnoOneJarClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private UnoOneJarClassLoaderHandler() {
     }

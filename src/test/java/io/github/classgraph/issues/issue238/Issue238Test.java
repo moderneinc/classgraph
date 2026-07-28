@@ -31,7 +31,6 @@ package io.github.classgraph.issues.issue238;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-
 import javax.persistence.Entity;
 
 import org.junit.jupiter.api.Test;

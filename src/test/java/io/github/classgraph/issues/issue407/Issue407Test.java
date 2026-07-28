@@ -37,10 +37,10 @@ import java.net.URLClassLoader;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.ops4j.pax.url.mvn.MavenResolvers;
 
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
+import org.ops4j.pax.url.mvn.MavenResolvers;
 
 /**
  * Test.

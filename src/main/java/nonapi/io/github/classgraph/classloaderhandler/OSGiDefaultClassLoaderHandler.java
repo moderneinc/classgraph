@@ -41,7 +41,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  * 
  * @author lukehutch
  */
-class OSGiDefaultClassLoaderHandler implements ClassLoaderHandler {
+final class OSGiDefaultClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private OSGiDefaultClassLoaderHandler() {
     }
