@@ -104,7 +104,7 @@ public final class SystemJarFinder {
         if (javaHome != null && !javaHome.isEmpty()) {
             final File javaHomeFile = new File(javaHome);
             addJREPath(javaHomeFile);
-            if (javaHomeFile.getName().equals("jre")) {
+            if ("jre".equals(javaHomeFile.getName())) {
                 // Try adding "{java.home}/.." as a JDK root when java.home is a JRE path
                 final File jreParent = javaHomeFile.getParentFile();
                 addJREPath(jreParent);

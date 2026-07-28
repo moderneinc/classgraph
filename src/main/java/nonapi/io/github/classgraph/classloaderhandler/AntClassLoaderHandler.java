@@ -35,7 +35,7 @@ import nonapi.io.github.classgraph.scanspec.ScanSpec;
 import nonapi.io.github.classgraph.utils.LogNode;
 
 /** Extract classpath entries from the Ant ClassLoader. */
-class AntClassLoaderHandler implements ClassLoaderHandler {
+final class AntClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private AntClassLoaderHandler() {
     }

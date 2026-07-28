@@ -82,7 +82,7 @@ public abstract class Resource implements Closeable, Comparable<Resource> {
      * @param length
      *            the length the length of the resource.
      */
-    public Resource(final ClasspathElement classpathElement, final long length) {
+    protected Resource(final ClasspathElement classpathElement, final long length) {
         this.classpathElement = classpathElement;
         this.length = length;
     }
@@ -102,7 +102,7 @@ public abstract class Resource implements Closeable, Comparable<Resource> {
         try {
             return uri.toURL();
         } catch (final IllegalArgumentException | MalformedURLException e) {
-            if (uri.getScheme().equals("jrt")) {
+            if ("jrt".equals(uri.getScheme())) {
                 // Currently URL cannot handle the "jrt:" scheme, used by system modules.
                 throw new IllegalArgumentException("Could not create URL from URI with \"jrt:\" scheme "
                         + "(\"jrt:\" is not supported by the URL class without a custom URL protocol handler): "

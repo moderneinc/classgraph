@@ -132,7 +132,7 @@ public final class ScanResult implements Closeable, AutoCloseable {
      * The set of WeakReferences to non-closed ScanResult objects. Uses WeakReferences so that garbage collection is
      * not blocked. (Bug #233)
      */
-    private static Set<WeakReference<ScanResult>> nonClosedWeakReferences = Collections
+    private static final Set<WeakReference<ScanResult>> nonClosedWeakReferences = Collections
             .newSetFromMap(new ConcurrentHashMap<WeakReference<ScanResult>, Boolean>());
 
     /** If true, ScanResult#staticInit() has been run. */
@@ -323,7 +323,7 @@ public final class ScanResult implements Closeable, AutoCloseable {
                 for (final ClassInfo refdClassInfo : ci.findReferencedClassInfo(log)) {
                     // Don't add self-references, or references to Object
                     if (refdClassInfo != null && !ci.equals(refdClassInfo)
-                            && !refdClassInfo.getName().equals("java.lang.Object")
+                            && !"java.lang.Object".equals(refdClassInfo.getName())
                             // Only add class to result if it is accepted, or external classes are enabled
                             && (!refdClassInfo.isExternalClass() || scanSpec.enableExternalClasses)) {
                         refdClassInfo.setScanResult(this);
@@ -942,7 +942,7 @@ public final class ScanResult implements Closeable, AutoCloseable {
         if (!scanSpec.enableClassInfo) {
             throw new IllegalArgumentException("Please call ClassGraph#enableClassInfo() before #scan()");
         }
-        if (superclassName.equals("java.lang.Object")) {
+        if ("java.lang.Object".equals(superclassName)) {
             // Return all standard classes (interfaces don't extend Object)
             return getAllStandardClasses();
         } else {
@@ -1448,7 +1448,7 @@ public final class ScanResult implements Closeable, AutoCloseable {
         // Deserialize the JSON
         final SerializationFormat deserialized = JSONDeserializer.deserializeObject(SerializationFormat.class,
                 json);
-        if (deserialized == null || !deserialized.format.equals(CURRENT_SERIALIZATION_FORMAT)) {
+        if (deserialized == null || !CURRENT_SERIALIZATION_FORMAT.equals(deserialized.format)) {
             // Probably the deserialization failed before now anyway, if fields have changed, etc.
             throw new IllegalArgumentException("JSON was serialized by newer version of ClassGraph");
         }
@@ -1564,12 +1564,6 @@ public final class ScanResult implements Closeable, AutoCloseable {
                 pathToAcceptedResourcesCached = null;
             }
             classGraphClassLoader = null;
-            if (classNameToClassInfo != null) {
-                // Don't clear classNameToClassInfo, since it may be used by ClassGraphClassLoader (#399).
-                // Just rely on the garbage collector to collect these once the ScanResult goes out of scope.
-                //                classNameToClassInfo.clear();
-                //                classNameToClassInfo = null;
-            }
             if (packageNameToPackageInfo != null) {
                 packageNameToPackageInfo.clear();
                 packageNameToPackageInfo = null;

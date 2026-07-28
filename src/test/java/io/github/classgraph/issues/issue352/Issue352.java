@@ -6,11 +6,11 @@ import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-import org.ops4j.pax.url.mvn.MavenResolvers;
 
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ScanResult;
 import io.github.classgraph.issues.issue107.Issue107Test;
+import org.ops4j.pax.url.mvn.MavenResolvers;
 
 /**
  * Unit test.

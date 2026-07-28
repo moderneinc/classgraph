@@ -40,7 +40,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
  * Allow for overrideClassLoaders to be called with a ClassGraphClassLoader as a parameter, so that nested scans can
  * share a single classloader (#485).
  */
-class ClassGraphClassLoaderHandler implements ClassLoaderHandler {
+final class ClassGraphClassLoaderHandler implements ClassLoaderHandler {
     /** Class cannot be constructed. */
     private ClassGraphClassLoaderHandler() {
     }
