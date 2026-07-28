@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
-
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -46,9 +45,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import javax.xml.xpath.XPathFactoryConfigurationException;
 
-import org.w3c.dom.Document;
-
 import io.github.classgraph.ClassGraph;
+import org.w3c.dom.Document;
 
 /** Finds the version number of ClassGraph, and the version of the JDK. */
 public final class VersionFinder {

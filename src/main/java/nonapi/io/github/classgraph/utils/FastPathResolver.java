@@ -99,8 +99,8 @@ public final class FastPathResolver {
      * @return the integer value of the character
      */
     private static int hexCharToInt(final char c) {
-        return (c >= '0' && c <= '9') ? (c - '0') //
-                : (c >= 'a' && c <= 'f') ? (c - 'a' + 10) //
+        return c >= '0' && c <= '9' ? (c - '0') //
+                : c >= 'a' && c <= 'f' ? (c - 'a' + 10) //
                         : (c - 'A' + 10);
     }
 
@@ -286,7 +286,7 @@ public final class FastPathResolver {
 
         // Handle Windows paths starting with a drive designation as an absolute path
         if (WINDOWS) {
-            if ((relativePath.startsWith("//", startIdx) || relativePath.startsWith("\\\\", startIdx))) {
+            if (relativePath.startsWith("//", startIdx) || relativePath.startsWith("\\\\", startIdx)) {
                 // Windows UNC path
                 startIdx += 2;
                 prefix = "//";
@@ -313,7 +313,7 @@ public final class FastPathResolver {
         // Normalize the path, then add any UNC or URL prefix
         String pathStr = normalizePath(startIdx == 0 ? relativePath : relativePath.substring(startIdx),
                 isFileOrJarURL);
-        if (!pathStr.equals("/")) {
+        if (!"/".equals(pathStr)) {
             // Remove any "!/" on end of URL
             if (pathStr.endsWith("/")) {
                 pathStr = pathStr.substring(0, pathStr.length() - 1);

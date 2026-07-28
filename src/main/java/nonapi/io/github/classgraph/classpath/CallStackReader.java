@@ -41,7 +41,7 @@ import nonapi.io.github.classgraph.utils.LogNode;
 import nonapi.io.github.classgraph.utils.VersionFinder;
 
 /** A class to find the unique ordered classpath elements. */
-class CallStackReader {
+final class CallStackReader {
     private static Class<?>[] callStack;
 
     /**

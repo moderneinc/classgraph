@@ -64,7 +64,7 @@ public abstract class AcceptReject {
     protected char separatorChar;
 
     /** Deserialization constructor. */
-    public AcceptReject() {
+    protected AcceptReject() {
     }
 
     /**
@@ -73,7 +73,7 @@ public abstract class AcceptReject {
      * @param separatorChar
      *            the separator char
      */
-    public AcceptReject(final char separatorChar) {
+    protected AcceptReject(final char separatorChar) {
         this.separatorChar = separatorChar;
     }
 

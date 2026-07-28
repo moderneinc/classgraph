@@ -38,7 +38,7 @@ import nonapi.io.github.classgraph.utils.VersionFinder.OperatingSystem;
 public final class URLPathEncoder {
 
     /** Whether an ASCII character is URL-safe. */
-    private static boolean[] safe = new boolean[256];
+    private static final boolean[] safe = new boolean[256];
 
     static {
         for (int i = 'a'; i <= 'z'; i++) {
@@ -83,9 +83,7 @@ public final class URLPathEncoder {
             final char c = str.charAt(chrIdx);
             if (c == '%') {
                 // Decode %-escaped char sequence, e.g. %5D
-                if (chrIdx > len - 3) {
-                    // Ignore truncated %-seq at end of string
-                } else {
+                if (chrIdx <= len - 3) {
                     final char c1 = str.charAt(++chrIdx);
                     final int digit1 = c1 >= '0' && c1 <= '9' ? (c1 - '0')
                             : c1 >= 'a' && c1 <= 'f' ? (c1 - 'a' + 10)
@@ -103,6 +101,7 @@ public final class URLPathEncoder {
                     } else {
                         buf.write((byte) ((digit1 << 4) | digit2));
                     }
+                    // Ignore truncated %-seq at end of string
                 }
             } else if (isQuery && c == '+') {
                 buf.write((byte) ' ');

@@ -390,7 +390,7 @@ public class ScanSpec {
         }
         for (Class<?> currClass = moduleLayer.getClass(); currClass != null; currClass = currClass
                 .getSuperclass()) {
-            if (currClass.getName().equals("java.lang.ModuleLayer")) {
+            if ("java.lang.ModuleLayer".equals(currClass.getName())) {
                 return true;
             }
         }
@@ -483,7 +483,7 @@ public class ScanSpec {
 
         if (pathAcceptReject.acceptIsEmpty() && classPackagePathAcceptReject.acceptIsEmpty()) {
             // If there are no accepted packages, the root package is accepted
-            return relativePath.isEmpty() || relativePath.equals("/") ? ScanSpecPathMatch.AT_ACCEPTED_PATH
+            return relativePath.isEmpty() || "/".equals(relativePath) ? ScanSpecPathMatch.AT_ACCEPTED_PATH
                     : ScanSpecPathMatch.HAS_ACCEPTED_PATH_PREFIX;
         }
 
@@ -506,7 +506,7 @@ public class ScanSpec {
         // Ancestor of accepted path
         if (
         // The default package is always the ancestor of accepted paths (need to keep recursing)
-        relativePath.equals("/")
+        "/".equals(relativePath)
                 // relativePath is an ancestor (prefix) of an accepted path
                 || pathAcceptReject.acceptHasPrefix(relativePath)
                 // relativePath is an ancestor (prefix) of an accepted class' parent directory

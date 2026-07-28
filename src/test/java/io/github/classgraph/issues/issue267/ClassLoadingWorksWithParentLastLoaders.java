@@ -33,7 +33,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.lang.reflect.Field;
 
 import com.xyz.meta.A;
-
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;

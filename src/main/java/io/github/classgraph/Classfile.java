@@ -282,7 +282,7 @@ class Classfile {
     private void scheduleScanningIfExternalClass(final String className, final String relationship,
             final LogNode log) {
         // Don't scan Object
-        if (className != null && !className.equals("java.lang.Object")
+        if (className != null && !"java.lang.Object".equals(className)
         // Don't schedule a class for scanning that was already found to be accepted
                 && !acceptedClassNamesFound.contains(className)
                 // Only schedule each external class once for scanning, across all threads
@@ -352,26 +352,25 @@ class Classfile {
      */
     private void extendScanningUpwardsFromAnnotationParameterValues(final Object annotationParamVal,
             final LogNode log) {
-        if (annotationParamVal == null) {
+        if (annotationParamVal != null) {
+            if (annotationParamVal instanceof AnnotationInfo) {
+                final AnnotationInfo annotationInfo = (AnnotationInfo) annotationParamVal;
+                scheduleScanningIfExternalClass(annotationInfo.getClassName(), "annotation class", log);
+                for (final AnnotationParameterValue apv : annotationInfo.getParameterValues()) {
+                    extendScanningUpwardsFromAnnotationParameterValues(apv.getValue(), log);
+                }
+            } else if (annotationParamVal instanceof AnnotationEnumValue) {
+                scheduleScanningIfExternalClass(((AnnotationEnumValue) annotationParamVal).getClassName(), "enum class",
+                        log);
+            } else if (annotationParamVal instanceof AnnotationClassRef) {
+                scheduleScanningIfExternalClass(((AnnotationClassRef) annotationParamVal).getClassName(), "class ref",
+                        log);
+            } else if (annotationParamVal.getClass().isArray()) {
+                for (int i = 0, n = Array.getLength(annotationParamVal); i < n; i++) {
+                    extendScanningUpwardsFromAnnotationParameterValues(Array.get(annotationParamVal, i), log);
+                }
+            }
             // Should not be possible -- ignore
-        } else if (annotationParamVal instanceof AnnotationInfo) {
-            final AnnotationInfo annotationInfo = (AnnotationInfo) annotationParamVal;
-            scheduleScanningIfExternalClass(annotationInfo.getClassName(), "annotation class", log);
-            for (final AnnotationParameterValue apv : annotationInfo.getParameterValues()) {
-                extendScanningUpwardsFromAnnotationParameterValues(apv.getValue(), log);
-            }
-        } else if (annotationParamVal instanceof AnnotationEnumValue) {
-            scheduleScanningIfExternalClass(((AnnotationEnumValue) annotationParamVal).getClassName(), "enum class",
-                    log);
-        } else if (annotationParamVal instanceof AnnotationClassRef) {
-            scheduleScanningIfExternalClass(((AnnotationClassRef) annotationParamVal).getClassName(), "class ref",
-                    log);
-        } else if (annotationParamVal.getClass().isArray()) {
-            for (int i = 0, n = Array.getLength(annotationParamVal); i < n; i++) {
-                extendScanningUpwardsFromAnnotationParameterValues(Array.get(annotationParamVal, i), log);
-            }
-        } else {
-            // String etc. -- ignore
         }
     }
 
@@ -467,10 +466,10 @@ class Classfile {
         boolean isModuleDescriptor = false;
         boolean isPackageDescriptor = false;
         ClassInfo classInfo = null;
-        if (className.equals("module-info")) {
+        if ("module-info".equals(className)) {
             isModuleDescriptor = true;
 
-        } else if (className.equals("package-info") || className.endsWith(".package-info")) {
+        } else if ("package-info".equals(className) || className.endsWith(".package-info")) {
             isPackageDescriptor = true;
 
         } else {
@@ -1308,7 +1307,7 @@ class Classfile {
         for (int i = 0; i < fieldCount; i++) {
             // Info on modifier flags: http://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.5
             final int fieldModifierFlags = reader.readUnsignedShort();
-            final boolean isPublicField = ((fieldModifierFlags & 0x0001) == 0x0001);
+            final boolean isPublicField = (fieldModifierFlags & 0x0001) == 0x0001;
             final boolean fieldIsVisible = isPublicField || scanSpec.ignoreFieldVisibility;
             final boolean getStaticFinalFieldConstValue = scanSpec.enableStaticFinalFieldConstantInitializerValues
                     && fieldIsVisible;
@@ -1341,7 +1340,7 @@ class Classfile {
                     final int attributeLength = reader.readInt(); // == 2
                     // See if field name matches one of the requested names for this class, and if it does,
                     // check if it is initialized with a constant value
-                    if ((getStaticFinalFieldConstValue)
+                    if (getStaticFinalFieldConstValue
                             && constantPoolStringEquals(attributeNameCpIdx, "ConstantValue")) {
                         // http://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.7.2
                         final int cpIdx = reader.readUnsignedShort();
@@ -1430,7 +1429,7 @@ class Classfile {
         for (int i = 0; i < methodCount; i++) {
             // Info on modifier flags: http://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.6
             final int methodModifierFlags = reader.readUnsignedShort();
-            final boolean isPublicMethod = ((methodModifierFlags & 0x0001) == 0x0001);
+            final boolean isPublicMethod = (methodModifierFlags & 0x0001) == 0x0001;
             final boolean methodIsVisible = isPublicMethod || scanSpec.ignoreMethodVisibility;
             List<MethodTypeAnnotationDecorator> methodTypeAnnotationDecorators = null;
             String methodName = null;

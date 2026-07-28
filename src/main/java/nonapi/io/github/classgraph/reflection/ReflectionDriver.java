@@ -75,14 +75,14 @@ abstract class ReflectionDriver {
     }
 
     /** Caches class members. */
-    public class ClassMemberCache {
+    public final class ClassMemberCache {
         private final Map<String, List<Method>> methodNameToMethods = new HashMap<>();
         private final Map<String, Field> fieldNameToField = new HashMap<>();
 
         private ClassMemberCache(final Class<?> cls) throws Exception {
             // Iterate from class to its superclasses, and find initial interfaces to start traversing from
             final Set<Class<?>> visited = new HashSet<>();
-            final LinkedList<Class<?>> interfaceQueue = new LinkedList<Class<?>>();
+            final LinkedList<Class<?>> interfaceQueue = new LinkedList<>();
             for (Class<?> c = cls; c != null; c = c.getSuperclass()) {
                 try {
                     // Cache any declared methods and fields
