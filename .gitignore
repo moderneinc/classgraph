@@ -26,3 +26,5 @@ hs_err_pid*
 .cache*
 
 TODO-local
+
+.cursor/rules/*.local.mdc
